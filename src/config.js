@@ -61,7 +61,7 @@ export const initConfig = async () => {
       taskInfo,
     });
 
-    await config.firekit.startRun();
+    // await config.firekit.startRun();
   }
 
   return config;
@@ -112,8 +112,8 @@ export const initRoarJsPsych = (config) => {
       code.apply(fn, arguments);
     };
 
-  jsPsych.opts.on_finish = extend(jsPsych.opts.on_finish, () => {
-    config.firekit.finishRun();
+  jsPsych.options.on_finish = extend(jsPsych.options.on_finish, () => {
+    // config.firekit.finishRun();
   });
 
   const timingData = {
@@ -123,13 +123,13 @@ export const initRoarJsPsych = (config) => {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   };
 
-  jsPsych.opts.on_data_update = extend(jsPsych.opts.on_data_update, (data) => {
+  jsPsych.options.on_data_update = extend(jsPsych.options.on_data_update, (data) => {
     if (data.save_trial) {
-      config.firekit?.writeTrial({
-        timingData,
-        userInfo: config.firekit?.userInfo,
-        ...data,
-      });
+      // config.firekit?.writeTrial({
+      //   timingData,
+      //   userInfo: config.firekit?.userInfo,
+      //   ...data,
+      // });
     }
   });
 
@@ -138,16 +138,16 @@ export const initRoarJsPsych = (config) => {
   window.addEventListener('error', (e) => {
     const { msg, url, lineNo, columnNo, error } = e;
 
-    config.firekit?.writeTrial({
-      task: 'error',
-      lastTrial: jsPsych.data.getLastTrialData().trials[0],
-      message: String(msg),
-      source: url || null,
-      lineNo: String(lineNo || null),
-      colNo: String(columnNo || null),
-      error: JSON.stringify(error || null),
-      timeStamp: new Date().toISOString(),
-    });
+    // config.firekit?.writeTrial({
+    //   task: 'error',
+    //   lastTrial: jsPsych.data.getLastTrialData().trials[0],
+    //   message: String(msg),
+    //   source: url || null,
+    //   lineNo: String(lineNo || null),
+    //   colNo: String(columnNo || null),
+    //   error: JSON.stringify(error || null),
+    //   timeStamp: new Date().toISOString(),
+    // });
   });
 
   return jsPsych;
@@ -209,7 +209,7 @@ export const initRoarTimeline = (config) => {
         taskInfo,
       });
 
-      await config.firekit.startRun();
+      // await config.firekit.startRun();
     },
   };
 
