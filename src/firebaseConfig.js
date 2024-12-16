@@ -8,19 +8,18 @@ const rootDoc = ROAR_DB_DOC === 'production' ? prodDoc : ['dev', 'my-roar-app'];
 /* eslint-disable import/prefer-default-export */
 export const roarConfig = {
   firebaseConfig: {
-    apiKey: 'AIzaSyCX9WR-j9yv1giYeFsMpbjj2G3p7jNHxIU',
-    authDomain: 'gse-yeatmanlab.firebaseapp.com',
-    projectId: 'gse-yeatmanlab',
-    storageBucket: 'gse-yeatmanlab.appspot.com',
-    messagingSenderId: '292331000426',
-    appId: '1:292331000426:web:91a04220991e3405737013',
-    measurementId: 'G-0TBTMDS993',
+    apiKey: "AIzaSyAXWxaPnY9Rq7atpq2R8ykQgD5xmvM18Mk",
+    authDomain: "giannaroar-a800d.firebaseapp.com",
+    projectId: "giannaroar-a800d",
+    storageBucket: "giannaroar-a800d.firebasestorage.app",
+    messagingSenderId: "40290466629",
+    appId: "1:40290466629:web:b03b15d91f42695d121c2c",
   },
   rootDoc: rootDoc,
 };
 
 // eslint-disable-next-line operator-linebreak
 const logMessage =
-  `This ROAR app will write data to the ${roarConfig.firebaseConfig.projectId} ` +
-  `Firestore database under the document ${rootDoc.join(' > ')}.`;
+  `This ROAR app will write data to the ${roarConfig.firebaseConfig.projectId} `
+  + `Firestore database under the document ${rootDoc.join(' > ')}.`;
 log.info(logMessage);
