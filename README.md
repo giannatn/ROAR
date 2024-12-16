@@ -1,2 +1,3 @@
-# ROAR
+# my-roar-app
+
 ROAR application
