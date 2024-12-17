@@ -1,12 +1,12 @@
-# my-roar-app
+# Web Developer 2 - School of Humanities and Sciences Application
+Name:   Gianna Nguyen
+Email:  giannatn@uci.edu
 
-[Web Developer 2 - School of Humanities and Sciences Application]
-Gianna Nguyen
-giannatn@uci.edu
------------------------------------------------------------------
-[Summary]
+## Summary
 
-[Initial Errors]
+
+## Initial Errors
+
 I had to change two lines from jsPsych.opts to jsPsych.options in config.js to get the initial app working.
 
 I had to comment out the firekit functions in config.js because they were throwing runtime errors.
