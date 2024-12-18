@@ -11,7 +11,8 @@ import './css/roar.css';
 // Local modules
 import { initConfig, initRoarJsPsych, initRoarTimeline } from './config';
 
-import { allTargets, preloadImages } from './loadAssets';
+import { allTargets, preloadImages, block2Targets, preloadBlock2Images } from './loadAssets';
+
 
 // ---------Initialize the jsPsych object and the timeline---------
 const config = await initConfig();
@@ -69,6 +70,67 @@ const hotDogTrials = {
 };
 
 timeline.push(hotDogTrials);
+
+const block2Instructions = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <h3>Great Job!</h3>
+    <p>
+      Now press the right arrow key if the displayed image is of a dog.
+      Press the left arrow key if the displayed image is of a cat.
+    </p>
+    <p>Press any key to continue.</p>
+    `,
+};
+
+timeline.push(preloadBlock2Images);
+timeline.push(block2Instructions);
+
+const catDogTrials = {
+  timeline: [
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `<div style="font-size: 60px;">+</div>`,
+      choices: 'NO_KEYS',
+      trial_duration: 500,
+    },
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: jsPsych.timelineVariable('target'),
+      choices: ['ArrowLeft', 'ArrowRight'],
+      prompt: `
+        <p>Is this a cat or a dog?</p>
+        <p>If cat, press the left arrow key.</p>
+        <p>If dog, press the right arrow key.</p>
+        `,
+      data: {
+        // Here is where we specify that this trial is a test response trial
+        task: 'test_response',
+        // Here we can also specify additional information that we would like stored
+        // in this trial in ROAR's Firestore database. For example,
+        start_time: config.startTime.toLocaleString('PST'),
+        start_time_unix: config.startTime.getTime(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      },
+    },
+  ],
+  timeline_variables: block2Targets,
+  sample: {
+    type: 'without-replacement',
+    size: 10,
+  },
+};
+
+timeline.push(catDogTrials);
+
+const endTrial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<p>Great job! Press any key to finish the assessment.</p>',
+  choices: 'ALL_KEYS',
+  response_ends_trial: true,
+};
+
+timeline.push(endTrial);
 
 const exit_fullscreen = {
   type: jsPsychFullScreen,
