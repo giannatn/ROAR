@@ -1,6 +1,7 @@
 // jsPsych imports
 import jsPsychFullScreen from '@jspsych/plugin-fullscreen';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
+import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 
 // Import necessary for async in the top level of the experiment script
 import 'regenerator-runtime/runtime';
@@ -46,7 +47,7 @@ const hotDogTrials = {
       trial_duration: 500,
     },
     {
-      type: jsPsychHtmlKeyboardResponse,
+      type: jsPsychImageKeyboardResponse,
       stimulus: jsPsych.timelineVariable('target'),
       choices: ['ArrowLeft', 'ArrowRight'],
       prompt: `
@@ -54,6 +55,8 @@ const hotDogTrials = {
         <p>If yes, press the right arrow key.</p>
         <p>If no, press the left arrow key.</p>
       `,
+      stimulus_height: 250,
+      stimulus_width: 250,
       data: {
         // Here is where we specify that we should save the trial to Firestore
         save_trial: true,
@@ -95,7 +98,7 @@ const catDogTrials = {
       trial_duration: 500,
     },
     {
-      type: jsPsychHtmlKeyboardResponse,
+      type: jsPsychImageKeyboardResponse,
       stimulus: jsPsych.timelineVariable('target'),
       choices: ['ArrowLeft', 'ArrowRight'],
       prompt: `
@@ -103,6 +106,8 @@ const catDogTrials = {
         <p>If cat, press the left arrow key.</p>
         <p>If dog, press the right arrow key.</p>
         `,
+      stimulus_height: 250,
+      stimulus_width: 250,
       data: {
         // Here is where we specify that this trial is a test response trial
         task: 'test_response',

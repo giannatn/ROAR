@@ -25,7 +25,7 @@ const dogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
 
 const allFiles = hotDogFiles.concat(notHotDogFiles);
 export const allTargets = allFiles.map((url) => ({
-  target: `<img src="${url}" width=250 height=250>`,
+  target: url,
   isHotDog: !url.includes('nothotdog'),
 }));
 
@@ -37,7 +37,7 @@ export const preloadImages = {
 
 const block2Files = catImages.concat(dogFiles);
 export const block2Targets = block2Files.map((url) => ({
-  target: `<img src="${url}" width=250 height=250>`,
+  target: url,
   isDog: url.includes('dog'),
 }));
 
